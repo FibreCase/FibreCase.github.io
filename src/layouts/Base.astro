@@ -38,6 +38,7 @@ import '../styles/global.css';
       </div>
     </nav>
     <slot />
+    <button id="to-top" aria-label="Back to top" title="Back to top">↑</button>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const btn = document.getElementById('theme-toggle');
@@ -73,33 +74,16 @@ import '../styles/global.css';
           sync();
         });
 
-        // Scroll reveal: elements rise in as they enter view; red rule lines draw in with their heading.
-        // Gated behind a `.js` class so content is never hidden when JS is off, and
-        // skipped entirely for users who prefer reduced motion.
-        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const supported = 'IntersectionObserver' in window;
-        if (reduce || !supported) return;
-        document.documentElement.classList.add('js');
-        const els = Array.from(document.querySelectorAll('[data-rise]'));
-        const io = new IntersectionObserver(
-          (entries) => {
-            for (const e of entries) {
-              if (e.isIntersecting) {
-                e.target.classList.add('in');
-                io.unobserve(e.target);
-              }
-            }
-          },
-          { threshold: 0.12, rootMargin: '0px 0px -7% 0px' }
-        );
-        els.forEach((e) => io.observe(e));
-        // Safety net: reveal above-fold content even if the observer is throttled.
-        setTimeout(() => {
-          const vh = window.innerHeight;
-          els.forEach((e) => {
-            if (!e.classList.contains('in') && e.getBoundingClientRect().top < vh) e.classList.add('in');
-          });
-        }, 1200);
+        // Floating back-to-top button, visible after scrolling.
+        const toTop = document.getElementById('to-top');
+        const onScroll = () => {
+          toTop.classList.toggle('show', window.scrollY > 400);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+        toTop.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
       });
     </script>
   </body>
