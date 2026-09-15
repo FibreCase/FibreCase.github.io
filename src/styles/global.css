@@ -136,7 +136,7 @@ a.ref:hover { background: var(--accent); color: #fff; }
 .lead-row { display: flex; gap: 28px; align-items: flex-start; }
 .lead-row .lead-text { flex: 1; min-width: 0; }
 .lead-row .lead-text .meta { margin-bottom: 10px; }
-.lead-row .lead-photo { width: 220px; flex-shrink: 0; margin: 2px 0 0; }
+.lead-row .lead-photo { width: 180px; flex-shrink: 0; margin: 2px 0 0; }
 @media (max-width: 700px) {
   .lead-row { flex-direction: column; gap: 14px; }
   .lead-row .lead-photo { width: 100%; max-width: 340px; }
