@@ -133,7 +133,13 @@ a.ref:hover { background: var(--accent); color: #fff; }
   gap: 12px; margin: 12px 0 2px;
 }
 .photos.two { grid-template-columns: repeat(2, 1fr); }
-.portrait { max-width: 280px; margin: 12px 0 2px; }
+.lead-row { display: flex; gap: 28px; align-items: flex-start; }
+.lead-row .lead-text { flex: 1; min-width: 0; }
+.lead-row .lead-photo { width: 220px; flex-shrink: 0; margin: 2px 0 0; }
+@media (max-width: 700px) {
+  .lead-row { flex-direction: column; gap: 14px; }
+  .lead-row .lead-photo { width: 100%; max-width: 340px; }
+}
 .photo { margin: 0; }
 .photo img {
   width: 100%; height: auto; display: block;
