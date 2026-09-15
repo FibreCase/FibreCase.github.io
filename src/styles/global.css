@@ -133,6 +133,7 @@ a.ref:hover { background: var(--accent); color: #fff; }
   gap: 12px; margin: 12px 0 2px;
 }
 .photos.two { grid-template-columns: repeat(2, 1fr); }
+.portrait { max-width: 280px; margin: 12px 0 2px; }
 .photo { margin: 0; }
 .photo img {
   width: 100%; height: auto; display: block;
